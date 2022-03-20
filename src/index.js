@@ -5,9 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { OrderDetailsProvider } from './contexts/OrderDetails';
 import SummaryForm from './pages/summary/SummaryForm';
 import OrderSummary from './pages/summary/OrderSummary';
-import { OrderDetailsProvider } from './contexts/OrderDetails';
 
 ReactDOM.render(
   <BrowserRouter>

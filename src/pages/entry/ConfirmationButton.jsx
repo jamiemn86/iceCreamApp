@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button, Confirm } from 'semantic-ui-react';
 import { useOrderDetails } from '../../contexts/OrderDetails';
 import { Link } from 'react-router-dom';
 
@@ -17,7 +16,6 @@ export default function ConfirmationButton() {
       <Link to="/summaryForm">
         <button type="button">Proceed to order summary page</button>
       </Link>
-      <Confirm />
     </div>
   );
 }

@@ -3,11 +3,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import SummaryForm from './pages/summary/SummaryForm';
+import OrderSummary from './pages/summary/OrderSummary';
+import { OrderDetailsProvider } from './contexts/OrderDetails';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <React.StrictMode>
+      <OrderDetailsProvider>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="summaryForm" element={<SummaryForm />} />
+          <Route path="orderConfirmation" element={<OrderSummary />} />
+        </Routes>
+      </OrderDetailsProvider>
+    </React.StrictMode>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 

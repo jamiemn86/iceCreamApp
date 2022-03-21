@@ -33,7 +33,7 @@ export default function SummaryForm() {
             label={checkboxLabel}
           />
         </Form.Group>
-        <Link to="/orderConfirmation">
+        <Link to={tcChecked ? '/orderConfirmation' : '/summaryForm'}>
           <Button
             variant="primary"
             type="submit"

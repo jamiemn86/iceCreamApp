@@ -1,14 +1,13 @@
 import {
   render,
   screen,
-  fireEvent,
-  waitFor
+  fireEvent
 } from '../../../test-utils/testing-library-utils';
 import ConfirmationButton from '../../entry/ConfirmationButton';
 import { MemoryRouter as Router } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import Options from '../../entry/Options';
-import OrderSummary from '../../summary/OrderSummary';
+import SummaryForm from '../../summary/SummaryForm';
 
 test('update chocolate scoops to 4 and check subtotal is $8', async () => {
   render(<Options optionType="scoops" />);
@@ -61,4 +60,16 @@ test('check that the proceed button can be clicked and leads to a new page', asy
   expect(proceedButton).toBeInTheDocument();
   fireEvent.click(proceedButton);
   expect(screen.getByRole('link')).toHaveAttribute('href', '/summaryForm');
+});
+
+test('check that terms and conditions line appears', () => {
+  render(
+    <Router>
+        <SummaryForm />
+    </Router>
+  );
+  const termsAndConditions = screen.getByText(
+    'Terms and Conditions'
+  );
+  expect(termsAndConditions).toBeInTheDocument();
 });

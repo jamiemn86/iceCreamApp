@@ -7,21 +7,17 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function ScoopOptions({ name, imagePath, updateItemCount }) {
   const [inputCheck, setInputCheck] = useState(true);
-  const [warning, setWarning] = useState('');
 
   const handleChange = (event) => {
     if (event.target.value < 0) {
       setInputCheck(false);
       updateItemCount(name, 0);
-      setWarning(name);
-      console.log(inputCheck);
-      console.log(warning);
     } else updateItemCount(name, event.target.value);
   };
 
   const customId = 'custom-id-yes';
 
-  if (!inputCheck && warning === name) {
+  if (!inputCheck) {
     toast('You cannot enter a negative value', {
       toastId: customId
     });
@@ -42,7 +38,7 @@ export default function ScoopOptions({ name, imagePath, updateItemCount }) {
         <Form.Label column xs="6" style={{ textAlign: 'right' }}>
           {name}
         </Form.Label>
-        {warning === name && <ToastContainer />}
+        {!inputCheck && <ToastContainer />}
         <Col xs="5" style={{ textAlign: 'left' }}>
           <Form.Control
             type="number"

@@ -1,11 +1,31 @@
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ScoopOptions({ name, imagePath, updateItemCount }) {
+  const [inputCheck, setInputCheck] = useState(true);
+  const [warning, setWarning] = useState('');
+
   const handleChange = (event) => {
-    updateItemCount(name, event.target.value);
+    if (event.target.value < 0) {
+      setInputCheck(false);
+      updateItemCount(name, 0);
+      setWarning(name);
+      console.log(inputCheck);
+      console.log(warning);
+    } else updateItemCount(name, event.target.value);
   };
+
+  const customId = 'custom-id-yes';
+
+  if (!inputCheck && warning === name) {
+    toast('You cannot enter a negative value', {
+      toastId: customId
+    });
+  }
 
   return (
     <Col xs={12} sm={6} md={4} lg={3} style={{ textAlign: 'center' }}>
@@ -22,6 +42,7 @@ export default function ScoopOptions({ name, imagePath, updateItemCount }) {
         <Form.Label column xs="6" style={{ textAlign: 'right' }}>
           {name}
         </Form.Label>
+        {warning === name && <ToastContainer />}
         <Col xs="5" style={{ textAlign: 'left' }}>
           <Form.Control
             type="number"

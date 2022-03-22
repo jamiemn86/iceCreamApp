@@ -3,6 +3,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useOrderDetails } from '../../contexts/OrderDetails';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function SummaryForm() {
   const [tcChecked, setTcChecked] = useState(false);
@@ -13,6 +15,16 @@ export default function SummaryForm() {
       I agree to <span style={{ color: 'blue' }}> Terms and Conditions</span>
     </span>
   );
+
+  const customId = 'custom-id-yes';
+
+  const checkProceed = () => {
+    if (!tcChecked) {
+      toast('Please accept the Terms and Conditions to proceed', {
+        toastId: customId
+      });
+    }
+  };
 
   return (
     <div>
@@ -33,7 +45,10 @@ export default function SummaryForm() {
             label={checkboxLabel}
           />
         </Form.Group>
-        <Link to={tcChecked ? '/orderConfirmation' : '/summaryForm'}>
+        <Link
+          onClick={checkProceed}
+          to={tcChecked ? '/orderConfirmation' : '/summaryForm'}
+        >
           <Button
             variant="primary"
             type="submit"
@@ -43,6 +58,7 @@ export default function SummaryForm() {
             Confirm order
           </Button>
         </Link>
+        {!tcChecked && <ToastContainer />}
       </Form>
     </div>
   );

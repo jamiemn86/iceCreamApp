@@ -27,6 +27,7 @@ export default function ScoopOptions({ name, imagePath, updateItemCount }) {
             type="number"
             defaultValue={0}
             onChange={handleChange}
+            min="0"
           />
         </Col>
       </Form.Group>

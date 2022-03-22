@@ -12,7 +12,6 @@ import SummaryForm from '../../summary/SummaryForm';
 test('update chocolate scoops to 4 and check subtotal is $8', async () => {
   render(<Options optionType="scoops" />);
 
-  // update chocolate scoops to 4 and check subtotal is $8
   const scoopsSubtotal = screen.getByText('Scoops total: $', { exact: false });
 
   const chocolateInput = await screen.findByRole('spinbutton', {
@@ -30,7 +29,6 @@ test('check that the grand total is initially set to $0.00', async () => {
     </Router>
   );
 
-  // check that the grand total is initially set to $0.00
   const grandTotal = screen.getByText('Grand total: $', { exact: false });
 
   expect(grandTotal).toHaveTextContent('0.00');
@@ -43,19 +41,17 @@ test('check that proceed button appears', async () => {
     </Router>
   );
 
-  // check that proceed button appears
   const proceedButton = screen.getByText('Proceed to order summary page');
   expect(proceedButton).toBeInTheDocument();
 });
 
-test('check that the proceed button can be clicked and leads to a new page', async () => {
+test('check that the proceed button can be clicked and links to the correct page', async () => {
   render(
     <Router>
       <ConfirmationButton />
     </Router>
   );
 
-  // check that proceed button can be click is linking correctly
   const proceedButton = screen.getByText('Proceed to order summary page');
   expect(proceedButton).toBeInTheDocument();
   fireEvent.click(proceedButton);
@@ -65,11 +61,9 @@ test('check that the proceed button can be clicked and leads to a new page', asy
 test('check that terms and conditions line appears', () => {
   render(
     <Router>
-        <SummaryForm />
+      <SummaryForm />
     </Router>
   );
-  const termsAndConditions = screen.getByText(
-    'Terms and Conditions'
-  );
+  const termsAndConditions = screen.getByText('Terms and Conditions');
   expect(termsAndConditions).toBeInTheDocument();
 });

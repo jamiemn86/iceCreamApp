@@ -19,7 +19,16 @@ export default function ScoopOptions({ name, imagePath, updateItemCount }) {
 
   if (!inputCheck) {
     toast('You cannot enter a negative value', {
-      toastId: customId
+      toastId: customId,
+      position: 'top-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+      type: 'info'
     });
   }
 
@@ -38,7 +47,19 @@ export default function ScoopOptions({ name, imagePath, updateItemCount }) {
         <Form.Label column xs="6" style={{ textAlign: 'right' }}>
           {name}
         </Form.Label>
-        {!inputCheck && <ToastContainer />}
+        {!inputCheck && (
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+        )}
         <Col xs="5" style={{ textAlign: 'left' }}>
           <Form.Control
             type="number"

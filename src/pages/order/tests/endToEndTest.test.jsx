@@ -58,6 +58,18 @@ test('check that the proceed button can be clicked and links to the correct page
   expect(screen.getByRole('link')).toHaveAttribute('href', '/summaryForm');
 });
 
+test('check that the proceed button is not enabled when the grand total is $0', async () => {
+  render(
+    <Router>
+      <ConfirmationButton />
+    </Router>
+  );
+
+  const proceedButton = screen.getByText('Proceed to order summary page');
+  expect(proceedButton).toBeInTheDocument();
+  expect(proceedButton).toBeDisabled();
+});
+
 test('check that terms and conditions line appears', () => {
   render(
     <Router>

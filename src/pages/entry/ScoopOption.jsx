@@ -9,8 +9,10 @@ export default function ScoopOptions({ name, imagePath, updateItemCount }) {
   const [inputCheck, setInputCheck] = useState(true);
 
   const handleChange = (event) => {
-    if (event.target.value < 0) {
+    if (parseInt(event.target.value) < 0) {
       setInputCheck(false);
+      updateItemCount(name, 0);
+    } else if (isNaN(parseInt(event.target.value))) {
       updateItemCount(name, 0);
     } else updateItemCount(name, event.target.value);
   };

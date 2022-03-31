@@ -1,7 +1,7 @@
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -17,20 +17,23 @@ export default function ScoopOptions({ name, imagePath, updateItemCount }) {
 
   const customId = 'custom-id-yes';
 
-  if (!inputCheck) {
-    toast('You cannot enter a negative value', {
-      toastId: customId,
-      position: 'top-center',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'colored',
-      type: 'info'
-    });
-  }
+  useEffect(() => {
+    if (!inputCheck) {
+      toast('You cannot enter a negative value', {
+        toastId: customId,
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'colored',
+        type: 'info',
+        progress: undefined,
+        limit: 1
+      });
+    }
+  }, [inputCheck]);
 
   return (
     <Col xs={12} sm={6} md={4} lg={3} style={{ textAlign: 'center' }}>

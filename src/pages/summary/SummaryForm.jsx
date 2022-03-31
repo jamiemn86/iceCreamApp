@@ -5,7 +5,6 @@ import { useOrderDetails } from '../../contexts/OrderDetails';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { info } from 'jshint/src/messages';
 
 export default function SummaryForm() {
   const [tcChecked, setTcChecked] = useState(false);

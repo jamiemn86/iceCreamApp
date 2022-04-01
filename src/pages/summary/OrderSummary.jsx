@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useOrderDetails } from '../../contexts/OrderDetails';
+import PreviousOrders from '../../contexts/PreviousOrders';
 
 export default function OrderSummary() {
   const randomOrderID = 'ID' + Math.random().toString(16).slice(2);
@@ -24,11 +26,16 @@ export default function OrderSummary() {
 
   useEffect(() => {
     orderPlacedToast();
+    addOrdertoPrevOrder(orderDetails);
   });
+
+  const [orderDetails] = useOrderDetails();
+
+  const { addOrdertoPrevOrder } = useContext(PreviousOrders);
 
   return (
     <div style={{ textAlign: 'center', margin: 150 }}>
-      Thank you! Your Order ID is {randomOrderID};
+      <p>Thank you! Your Order ID is {randomOrderID}</p>
       <div style={{ margin: 50 }}>
         <button
           onClick={() => {

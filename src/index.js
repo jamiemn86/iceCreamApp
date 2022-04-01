@@ -8,17 +8,20 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { OrderDetailsProvider } from './contexts/OrderDetails';
 import SummaryForm from './pages/summary/SummaryForm';
 import OrderSummary from './pages/summary/OrderSummary';
+import { PreviousOrdersProvider } from '../src/contexts/PreviousOrders';
 
 ReactDOM.render(
   <BrowserRouter>
     <React.StrictMode>
-      <OrderDetailsProvider>
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="summaryForm" element={<SummaryForm />} />
-          <Route path="orderConfirmation" element={<OrderSummary />} />
-        </Routes>
-      </OrderDetailsProvider>
+      <PreviousOrdersProvider>
+        <OrderDetailsProvider>
+          <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="summaryForm" element={<SummaryForm />} />
+            <Route path="orderConfirmation" element={<OrderSummary />} />
+          </Routes>
+        </OrderDetailsProvider>
+      </PreviousOrdersProvider>
     </React.StrictMode>
   </BrowserRouter>,
   document.getElementById('root')

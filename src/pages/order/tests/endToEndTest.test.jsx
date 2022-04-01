@@ -8,7 +8,6 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import Options from '../../entry/Options';
 import SummaryForm from '../../summary/SummaryForm';
-import OrderSummary from '../../summary/OrderSummary';
 
 test('update chocolate scoops to 4 and check subtotal is $8', async () => {
   render(<Options optionType="scoops" />);
@@ -79,11 +78,4 @@ test('check that terms and conditions line appears', () => {
   );
   const termsAndConditions = screen.getByText('Terms and Conditions');
   expect(termsAndConditions).toBeInTheDocument();
-});
-
-test('check that the return button appears', async () => {
-  render(<OrderSummary />);
-
-  const returnButton = screen.getByText('Return to order a new ice cream');
-  expect(returnButton).toBeInTheDocument();
 });
